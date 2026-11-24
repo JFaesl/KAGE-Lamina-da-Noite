@@ -28,6 +28,33 @@ export default defineConfig(() => {
           }
         },
       },
+      // Mirrors the production static bundle into /docs so GitHub Pages works
+      // immediately via "Deploy from a branch (/docs)" as well as GitHub Actions.
+      {
+        name: 'sync-github-pages-docs',
+        apply: 'build',
+        closeBundle(error?: Error): void {
+          if (error) {
+            return;
+          }
+          const distDir = path.resolve(__dirname, 'dist');
+          const docsDir = path.resolve(__dirname, 'docs');
+          if (!fs.existsSync(distDir)) {
+            return;
+          }
+          fs.rmSync(docsDir, {recursive: true, force: true});
+          fs.mkdirSync(docsDir, {recursive: true});
+          const distIndex = path.resolve(distDir, 'index.html');
+          if (fs.existsSync(distIndex)) {
+            fs.cpSync(distIndex, path.resolve(docsDir, 'index.html'));
+          }
+          const distAssets = path.resolve(distDir, 'assets');
+          if (fs.existsSync(distAssets)) {
+            fs.cpSync(distAssets, path.resolve(docsDir, 'assets'), {recursive: true, force: true});
+          }
+          fs.writeFileSync(path.resolve(docsDir, '.nojekyll'), '');
+        },
+      },
     ],
     resolve: {
       alias: {

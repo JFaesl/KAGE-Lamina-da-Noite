@@ -32,5 +32,10 @@
   <body class="bg-[#090D16] text-slate-50 antialiased selection:bg-rose-600/40 selection:text-white overflow-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if (document.querySelector('script[src="/src/main.tsx"]') && location.hostname.endsWith('github.io')) {
+        location.replace('./docs/');
+      }
+    </script>
   </body>
 </html>
