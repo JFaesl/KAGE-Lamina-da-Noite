@@ -28,13 +28,33 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      html,
+      body,
+      #root {
+        margin: 0;
+        background-color: #070b14;
+        color: #f8fafc;
+      }
+    </style>
   </head>
   <body class="bg-[#090D16] text-slate-50 antialiased selection:bg-rose-600/40 selection:text-white overflow-hidden">
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script
+      type="module"
+      src="/src/main.tsx"
+      onerror="if(!location.pathname.includes('/docs/')){location.replace('./docs/');}"
+    ></script>
     <script>
-      if (document.querySelector('script[src="/src/main.tsx"]') && location.hostname.endsWith('github.io')) {
-        location.replace('./docs/');
+      if (
+        document.querySelector('script[src="/src/main.tsx"]') &&
+        location.hostname.endsWith('github.io') &&
+        !location.pathname.includes('/docs/')
+      ) {
+        var basePath = location.pathname.endsWith('/')
+          ? location.pathname
+          : location.pathname.replace(/\/[^/]*$/, '/');
+        location.replace(basePath + 'docs/');
       }
     </script>
   </body>
