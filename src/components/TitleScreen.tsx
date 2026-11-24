@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Maximize2, Minimize2, Trophy, Volume2, VolumeX } from 'lucide-react';
 import { DIFFICULTIES, Difficulty, NINJUTSU_LIST, NinjutsuType, STAGES, StageId } from '../game/types';
+import BACKDROP_URL from '../assets/images/title_ninja_backdrop_1795024279641.jpg';
 
 interface TitleScreenProps {
   selectedStage: StageId;
@@ -21,8 +22,6 @@ interface TitleScreenProps {
   onOpenAchievements: () => void;
   onStart: () => void;
 }
-
-const BACKDROP_URL = '/src/assets/images/title_ninja_backdrop_1795024279641.jpg';
 
 export function TitleScreen({
   selectedStage,
