@@ -1,0 +1,6 @@
+{
+  "name": "KAGE: Lâmina da Noite",
+  "description": "Jogo beat 'em up 2D de ação ninja com combos de katana, shurikens, esquiva sombria e batalhas contra chefes sob a lua carmesim.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
